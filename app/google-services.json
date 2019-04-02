@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1093906790009",
+    "firebase_url": "https://cu-chat-eaf94.firebaseio.com",
+    "project_id": "cu-chat-eaf94",
+    "storage_bucket": "cu-chat-eaf94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093906790009:android:5e2f8659440b7e61",
+        "android_client_info": {
+          "package_name": "org.fox19.cuchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093906790009-onap8gah619osfc8trf8bqjmo0pmdgqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKYHI8pBmUjeeDDeHn33CJRgTQKWeyOa8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
