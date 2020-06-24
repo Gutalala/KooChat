@@ -7,42 +7,53 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import org.fox19.cuchat.R
+import android.content.Intent
+import org.fox19.cuchat.messages.LatestMessagesActivity
 
 /**
  * Created by fox19
  */
 
 class LoginActivity: AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        auth = FirebaseAuth.getInstance()
 
         setContentView(R.layout.activity_login)
 
         login_button_login.setOnClickListener {
-            val email = email_editText_login.text.toString()
-            val password = password_editText_login.text.toString()
+            performLogin()
+        }
 
-            Log.d("Login", "Attempt to login with email/pw: $email/***")
-
-            auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("LoginActivity", "signInWithEmail:success")
-                            val user = auth.currentUser
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("LoginActivity", "signInWithEmail:failure", task.exception)
-                            Toast.makeText(baseContext, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-            back_to_register_textView.setOnClickListener {
-                finish()
-            }
+        back_to_register_textView.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
+
+    private fun performLogin() {
+        val email = email_editText_login.text.toString()
+        val password = password_editText_login.text.toString()
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill out email/pw.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    if (!it.isSuccessful) return@addOnCompleteListener
+
+                    Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
+
+                    val intent = Intent(this, LatestMessagesActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to log in: ${it.message}", Toast.LENGTH_SHORT).show()
+                }
+    }
+
 }

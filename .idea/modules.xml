@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Cu Chat.iml" filepath="$PROJECT_DIR$/Cu Chat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cu Chat.iml" filepath="$PROJECT_DIR$/Cu Chat.iml" group="Cu Chat" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Cu Chat/app" />
     </modules>
   </component>
 </project>
